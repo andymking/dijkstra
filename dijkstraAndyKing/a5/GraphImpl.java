@@ -126,9 +126,10 @@ public class GraphImpl implements Graph {
             for (Node adjacent : obj.getAdjs().values()) {
                 // For loop looking at adjacent nodes to the start node.
                 if (!adjacent.isKnown()) {
+                    // If an adjacent node has not been checked, add current node's total distance to the adjacent edge weight.
                     pLen = obj.getEdge(adjacent.getName()).getWeight() + obj.getTotalDistTo();
                     if (pLen < adjacent.getTotalDistTo() ^ adjacent.getTotalDistTo() == 0) {
-                        // If total distance to current node plus adjacent edge weight is less than the adjacent total distance, update and add to queue.
+                        // If total distance to current node plus adjacent edge weight is less than the adjacent total distance, update adjacent's total distance, and add the adjacent to queue.
                         adjacent.setTotalDistTo(pLen);
                         adjacent.setRecentNode(name);
                         prq.add(adjacent);
